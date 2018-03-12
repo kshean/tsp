@@ -73,7 +73,7 @@ The second step is to actually solve the TSP problem using Java. Using permutati
 The complexity of the algorithm for finding the shortest routes increases significally after 10 ~ 13 nodes. When pruning the branches, more optimization may be used to solve more number of nodes efficiently. If this can be achieved, 51 nodes can be split into 2 groups (instead of 5) in step 1 of the process based on the clustering algorithm and then two drivers will only have to make one trip each following the most optimal routes.
 
 ## Technology
-Java
-R (geosphere, sp packages)
-Bash (putting pieces together)
+Java,
+R (geosphere, sp packages),
+Bash (putting pieces together),
 Docker
