@@ -14,21 +14,11 @@ public class Tsp {
 		Queue<Node> unvisitedCities = f.readFile(fileName);
 		
 		List<Node> currentBest = new ArrayList<Node>();
-		List<Node> upperBound = new ArrayList<Node>();
-		
 		
 		List<Node> path = new ArrayList<Node>();
 		path.add(unvisitedCities.poll());
 		
-		unvisitedCities.forEach((node)->{
-			Node n = new Node(node.getId(), node.getAddress(), node.getName(), node.getDistanceMap());
-			upperBound.add(n);
-		});
-		
-		Double upperBoundNum = calculateLowerBound(unvisitedCities, path);
-		System.out.println(upperBoundNum);
-		
-		permute(unvisitedCities, path, currentBest, upperBoundNum);
+		permute(unvisitedCities, path, currentBest);
 		System.out.println("Path is: ");
 		currentBest.forEach(p->System.out.print(p.getName() + "->"));
 		System.out.println();
@@ -36,7 +26,7 @@ public class Tsp {
 		System.out.println(calculateCurrentDistance(currentBest));		
 	}
 	
-	public void permute(Queue<Node> unvisiedCities, List<Node> path, List<Node> currentBest, Double upperBoundNum) {
+	public void permute(Queue<Node> unvisiedCities, List<Node> path, List<Node> currentBest) {
 		
 		if(!promisingPath(unvisiedCities, path, currentBest)) {
 			return;
@@ -48,7 +38,7 @@ public class Tsp {
 		}
 		for(int i = 0; i < unvisiedCities.size(); ++i){
 			path.add(unvisiedCities.poll());
-			permute(unvisiedCities, path, currentBest, upperBoundNum);
+			permute(unvisiedCities, path, currentBest);
 			unvisiedCities.add(path.remove(path.size() - 1));
 		}
 
