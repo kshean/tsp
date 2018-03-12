@@ -8,7 +8,7 @@ import java.util.Queue;
 
 public class Tsp {
 	
-	public void printPermutation(String fileName) {
+	public Double printPermutation(String fileName) {
 		
 		FileReader f = new FileReader();
 		Queue<Node> unvisitedCities = f.readFile(fileName);
@@ -19,11 +19,13 @@ public class Tsp {
 		path.add(unvisitedCities.poll());
 		
 		permute(unvisitedCities, path, currentBest);
-		System.out.println("Path is: ");
+		System.out.print("Path: ");
 		currentBest.forEach(p->System.out.print(p.getName() + "->"));
 		System.out.println();
-		System.out.println("Total Distance (meters) is: ");
-		System.out.println(calculateCurrentDistance(currentBest));		
+		System.out.print("Total Distance: ");
+		System.out.print(calculateCurrentDistance(currentBest));
+		System.out.println(" meters");
+		return calculateCurrentDistance(currentBest);
 	}
 	
 	public void permute(Queue<Node> unvisiedCities, List<Node> path, List<Node> currentBest) {
